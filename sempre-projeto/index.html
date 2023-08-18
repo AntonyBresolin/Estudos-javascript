@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz com Borda</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .borda {
+            background-color: #e0e0e0;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Matriz Inicial</h2>
+    <table id="tabelaInicial"></table>
+
+    <h2>Matriz Final</h2>
+    <table id="tabelaFinal"></table>
+
+    <h2>Segmentos</h2>
+    <div id="segmentos"></div>
+
+    <script>
+        function criarMatrizInicial(linhas, colunas, posicaoBorda) {
+            let matriz = [];
+            for (let i = 0; i < linhas; i++) {
+                let linha = [];
+                for (let j = 0; j < colunas; j++) {
+                    if (j === posicaoBorda) {
+                        linha.push('BORDA');
+                    } else {
+                        linha.push(0);
+                    }
+                }
+                matriz.push(linha);
+            }
+            return matriz;
+        }
+
+        function redefinirMatriz(matrizInicial, posicaoBorda) {
+            let novaMatriz = [];
+            let colunasAntesBorda = posicaoBorda;
+            let colunasAposBorda = matrizInicial[0].length - colunasAntesBorda - 1;
+            let totalColunas = colunasAntesBorda + 1; // incluindo a borda
+
+            for (let i = 0; i < matrizInicial.length; i++) {
+                let linhaAtual = matrizInicial[i].slice(0, totalColunas);
+                novaMatriz.push(linhaAtual);
+
+                if (colunasAposBorda > colunasAntesBorda) {
+                    for (let j = 0; j < colunasAntesBorda; j++) {
+                        let novaLinha = new Array(colunasAntesBorda).fill(0);
+                        novaLinha.push('BORDA');
+                        novaMatriz.push(novaLinha);
+                    }
+                    colunasAposBorda -= colunasAntesBorda;
+                } else {
+                    let novaLinha = new Array(colunasAposBorda).fill(0);
+                    novaLinha.push('x');
+                    novaLinha.push('BORDA');
+                    novaMatriz.push(novaLinha);
+                    colunasAposBorda = 0;
+                }
+            }
+
+            return novaMatriz;
+        }
+
+        function identificarSegmentos(matrizFinal) {
+            let segmentos = [];
+            let segmentoAtual = [];
+            for (let i = 0; i < matrizFinal.length; i++) {
+                segmentoAtual.push(matrizFinal[i]);
+                if (matrizFinal[i].includes('BORDA')) {
+                    segmentos.push(segmentoAtual);
+                    segmentoAtual = [];
+                }
+            }
+            return segmentos;
+        }
+        function gerarTabela(matriz, idTabela) {
+            const tabela = document.getElementById(idTabela);
+            tabela.innerHTML = ""; // Limpar a tabela
+
+            for (let i = 0; i < matriz.length; i++) {
+                const tr = document.createElement('tr');
+                for (let j = 0; j < matriz[i].length; j++) {
+                    const td = document.createElement('td');
+                    if (matriz[i][j] === 'BORDA') {
+                        td.classList.add('borda');
+                    }
+                    td.textContent = matriz[i][j];
+                    tr.appendChild(td);
+                }
+                tabela.appendChild(tr);
+            }
+        }
+
+        const matrizInicial = criarMatrizInicial(4, 7, 2);
+        const matrizFinal = redefinirMatriz(matrizInicial, 2);
+        const segmentos = identificarSegmentos(matrizFinal);
+
+        gerarTabela(matrizInicial, 'tabelaInicial');
+        gerarTabela(matrizFinal, 'tabelaFinal');
+
+        segmentos.forEach((seg, idx) => {
+            const h3 = document.createElement('h3');
+            h3.textContent = `Segmento ${String.fromCharCode(65 + idx)}`;
+            document.getElementById('segmentos').appendChild(h3);
+            const table = document.createElement('table');
+            document.getElementById('segmentos').appendChild(table);
+            gerarTabela(seg, table);
+        });
+
+    </script>
+</body>
+
+</html>
