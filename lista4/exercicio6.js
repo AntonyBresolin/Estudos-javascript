@@ -10,6 +10,7 @@ function exercicio6 () {
     buttonFC.type = "button";
     buttonCF.textContent = "CF"
     buttonFC.textContent = "FC"
+    
 
     const conteudo = document.querySelector("div.conteudo");
 
@@ -17,6 +18,7 @@ function exercicio6 () {
     conteudo.appendChild(buttonCF);
     conteudo.appendChild(buttonFC);
     conteudo.appendChild(h1);
+    conteudo.style.border = "solid 1px black"
 
     buttonCF.onclick = () => {
         h1.textContent = `${(Number(input.value)*1.8+32).toFixed(0)}`;

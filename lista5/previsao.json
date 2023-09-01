@@ -1,0 +1,39 @@
+{
+    "previsao": [
+        {
+            "dia": "segunda-feira",
+            "temperatura": 30,
+            "imagem": "https://static.vecteezy.com/ti/vetor-gratis/p3/551099-sol-dos-desenhos-animados-gratis-vetor.jpg"
+        },
+        {
+            "dia": "terça-feira",
+            "temperatura": 29,
+            "imagem": "https://amordepapeis.com.br/wp-content/uploads/2020/02/desenho-de-nuvem-16.jpg"
+        },
+        {
+            "dia": "quarta-feira",
+            "temperatura": 26,
+            "imagem": "https://png.pngtree.com/png-clipart/20230129/original/pngtree-sun-and-clouds-png-image_8933945.png"
+        },
+        {
+            "dia": "quinta-feira",
+            "temperatura": 30,
+            "imagem": "https://png.pngtree.com/png-clipart/20230129/original/pngtree-sun-and-clouds-png-image_8933945.png"
+        },
+        {
+            "dia": "sexta-feira",
+            "temperatura": 16,
+            "imagem": "https://static.vecteezy.com/ti/vetor-gratis/p3/551099-sol-dos-desenhos-animados-gratis-vetor.jpg"
+        },
+        {
+            "dia": "sabado",
+            "temperatura": 10,
+            "imagem": "https://png.pngtree.com/png-clipart/20230129/original/pngtree-sun-and-clouds-png-image_8933945.png"
+        },
+        {
+            "dia": "domingo",
+            "temperatura": 40,
+            "imagem": "https://static.vecteezy.com/ti/vetor-gratis/p3/551099-sol-dos-desenhos-animados-gratis-vetor.jpg"
+        }
+    ]
+}
